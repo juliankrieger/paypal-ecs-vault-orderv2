@@ -1,0 +1,80 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="paypal-introduction">
+    <div id="paypal-button-container"></div>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Settings</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Customer ID</td>
+          <td id="customer-id">
+            <%= customerId %>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-decoration: underline;" title="Customer ID which was used for the first payment token">Original Customer ID(?)</td>
+          <td id="original-customer-id">
+            
+          </td>
+        </tr>
+        <tr>
+          <td>Payment Tokens</td>
+          <td>
+            <ul class="payment-tokens" id="payment-tokens">
+              <% for( const token of payment_tokens ) { %>
+                <li>
+                  <%= token.id %> -
+                    <% for( const [key, value] of Object.entries(token.source)) { %>
+                      <%= key %>
+                        <% } %>
+                </li>
+                <% } %>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Amount
+          </td>
+          <td>
+            <div class="input-fields">
+              <input placeholder="Value (in USD)" value="80" id="amount-input" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Delete Payment Tokens
+          </td>
+          <td>
+            <div class="input-fields">
+              <button id="delete-payment-token" <% if (!payment_tokens || payment_tokens.length === 0) { %>
+               disabled
+              <% } %> >Press me!</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Replace "test" with your own sandbox Business account app client ID -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=<%= clientId %>&currency=EUR&components=buttons,funding-eligibility&vault=true"></script>
+  <script src="index.browser.mjs" type="module"></script>
+  <script>
+    window.paypal = paypal;
+  </script>
+</body>
+
+</html>

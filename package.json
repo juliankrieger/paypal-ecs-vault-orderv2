@@ -1,0 +1,21 @@
+{
+    "name": "ecs-example",
+    "description": "quick and dirty example for an ecs integration",
+    "authors": "author",
+    "version": "1.0.0",
+    "main": "index.node.js",
+    "scripts": {
+        "start": "node index.node.js && npm run open-browser",
+        "open-browser": "start chrome http://localhost:3000"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "dotenv": "^16.0.0",
+        "ejs": "^3.1.8",
+        "express": "^4.17.3",
+        "node-fetch": "^3.2.1",
+        "shortid": "^2.2.16",
+        "uuid": "^8.3.2"
+    },
+    "type": "module"
+}
